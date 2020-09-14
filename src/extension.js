@@ -82,10 +82,10 @@ const runCommand = async context => {
 
   const update = () => {
     vscode.commands.executeCommand('editor.action.clipboardCopyAction');
-    panel.postMessage({ type: 'update', ...getConfig() });
+    panel.webview.postMessage({ type: 'update', ...getConfig() });
   };
 
-  const flash = () => panel.postMessage({ type: 'flash' });
+  const flash = () => panel.webview.postMessage({ type: 'flash' });
 
   panel.webview.onDidReceiveMessage(async ({ type, data }) => {
     if (type === 'save') {
